@@ -17,27 +17,26 @@ void CMaze::Init()
 		{
 			for (int j = 0; j < m_sizeWidth; j++)
 			{
-				if (j == 0 && i == 1)
 				{
-					//시작점
-					m_Board[j][i].SetX(0);
-					m_Board[j][i].SetY(1);
-					m_Board[j][i].SetStatus(eMazeBlackStatus::START);
+					if (j == 0 && i == 1)
+					{
+						m_Board[j][i].SetX(j);
+						m_Board[j][i].SetY(i);
+						m_Board[j][i].SetStatus(eMazeBlockStatus::START);
+					}
+					else if (j == (m_sizeWidth-1) && i == (m_sizeHeight - 2))
+					{
+						m_Board[j][i].SetX(j);
+						m_Board[j][i].SetY(i);
+						m_Board[j][i].SetStatus(eMazeBlockStatus::END);
+					}
+					else
+					{
+						m_Board[j][i].SetX(j);
+						m_Board[j][i].SetY(i);
+						m_Board[j][i].SetStatus(eMazeBlockStatus::WALL);
+					}	
 				}
-				else if (j == m_sizeWidth - 1 && i == m_sizeHeight - 2)
-				{
-					// 출구
-					m_Board[j][i].SetX(m_sizeWidth);
-					m_Board[j][i].SetY(m_sizeHeight - 1);
-					m_Board[j][i].SetStatus(eMazeBlackStatus::END);
-				}
-				else
-				{
-					m_Board[j][i].SetX(j);
-					m_Board[j][i].SetY(i);
-					m_Board[j][i].SetStatus(eMazeBlackStatus::WALL);	
-				}
-
 			}
 			std::cout << std::endl;
 		}
@@ -50,9 +49,16 @@ void CMaze::Init()
 	
 }
 
-CMazeBlock CMaze::GetBoard()
+CMazeBlock CMaze::GetBoard(int Width, int Height)
 {
-	//return m_Board[m_sizeWidth][m_sizeHeight];
+	return m_Board[Width][Height];
 }
+
+void CMaze::SetBoardStatus(int Width, int Height, eMazeBlockStatus Status)
+{
+	m_Board[Width][Height].SetStatus(Status);
+}
+
+
 
 
