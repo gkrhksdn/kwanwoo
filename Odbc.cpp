@@ -58,6 +58,7 @@ void ODBC::AllocateHandles()
 
 void ODBC::ConnectDataSource()
 {
+	//// 여기입니다 retcode 반환값이 -1 이 나옵니다 0이나 1이 나와야 되는걸로 알고있습니다. 위의 함수는 연결이 되어서 콘솔창에 allocate success라고뜹니다!
 	retcode = SQLConnect(hdbc, (SQLWCHAR*)"DESKTOP-MTOM02K", SQL_NTS, (SQLWCHAR*)"gkrhksdn", SQL_NTS, (SQLWCHAR*)"rhksdn", SQL_NTS);
 }
 
